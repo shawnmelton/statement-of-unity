@@ -1,0 +1,17 @@
+@media screen and (min-width:401px) {
+    header > h1 {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width:400px) {
+    body {
+        font-size: 12px;
+    }
+
+    header > h1 {
+        text-align: left;
+
+        strong { width: 210px; }
+    }
+}

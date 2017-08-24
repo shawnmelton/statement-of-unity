@@ -1,0 +1,11 @@
+.greenButton:hover { background: $green; }
+.blueButton:hover { background: $blue; }
+.greenButton:hover, .blueButton:hover { color: #fff; }
+
+.width45p {
+    width: 45%;
+}
+
+.mr10p {
+    margin-right: 10%;
+}

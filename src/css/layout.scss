@@ -1,0 +1,14 @@
+body {
+     background-attachment: fixed;
+     font-family: 'Nunito', sans-serif;
+     font-size: 18px;
+     line-height: 1.8;
+}
+
+a {
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
