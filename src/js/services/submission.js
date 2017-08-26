@@ -13,8 +13,6 @@ class SubmissionService {
         request.call().then(r => {
             logger.log('SubmissionService', r)
         })
-
-        logger.log('SubmissionService', response)
     }
 }
 

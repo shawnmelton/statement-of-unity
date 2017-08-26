@@ -1,2 +1,4 @@
 <?php
-echo 1;
+require_once dirname(__FILE__) .'/config/bootstrap.php';
+
+Router::run();
