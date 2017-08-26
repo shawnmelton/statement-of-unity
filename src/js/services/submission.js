@@ -10,7 +10,9 @@ class SubmissionService {
 
         const request = new AjaxRequest(AjaxMethods.POST, '/api/submit')
         request.setBody(body)
-        const response = await request.call()
+        request.call().then(r => {
+            logger.log('SubmissionService', r)
+        })
 
         logger.log('SubmissionService', response)
     }
