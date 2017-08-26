@@ -1,6 +1,6 @@
-.greenButton:hover { background: $green; }
-.blueButton:hover { background: $blue; }
-.greenButton:hover, .blueButton:hover { color: #fff; }
+.buttonGreen:hover { background: $green; }
+.buttonBlue:hover { background: $blue; }
+.buttonGreen:hover, .buttonBlue:hover { color: #fff; }
 
 .width45p {
     width: 45%;

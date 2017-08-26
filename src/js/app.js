@@ -1,10 +1,14 @@
-class UnityApp {
-    run() {
-        console.log('Ok!!')
-    }
-}
+import 'babel-polyfill'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 
-const app = new UnityApp()
-app.run()
+import Root from './components/root'
 
-console.log('test!')
+import store from './redux/store'
+
+ReactDOM.render((
+    <Provider store={store}>
+        <Root />
+    </Provider>
+), document.getElementById('root'))
