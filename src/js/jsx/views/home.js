@@ -5,7 +5,7 @@ import SubmissionForm from '../../components/partials/submissionForm'
 
 const template = (component) => {
     return (
-        <div>
+        <div className="mt125 p20-25 txtDkGrey borderBox maxWidth1000 center">
             <p className="mb15 txtCenter">August 24, 2017</p>
 
             <p className="mb25 txtCenter">
