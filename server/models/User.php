@@ -8,6 +8,10 @@ class User {
     private $id;
     private $lastName;
 
+    public function __construct() {
+        $this->id = 0;
+    }
+
     public function getChurch(): string {
         return $this->church;
     }

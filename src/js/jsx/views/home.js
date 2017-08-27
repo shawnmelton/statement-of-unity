@@ -36,10 +36,11 @@ const template = (component) => {
             </p>
 
             <ul>
-                <li>John Doe</li>
-                <li>Jane Doe</li>
-                <li>Sally Doe</li>
-                <li>Bob Doe</li>
+            {
+                component.props.submissions.map(submission => {
+                    return <li key={submission.id}>{submission.firstName} {submission.lastName} - {submission.church}</li>
+                })
+            }
             </ul>
 
             <a name="form"></a>

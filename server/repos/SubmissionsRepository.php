@@ -37,6 +37,21 @@ class SubmissionsRepository {
         return $this->map($result[0]);
     }
 
+    public function search(\stdClass $options): array {
+        $submissions = [];
+        $results = DB::query('SELECT * FROM submissions', []);
+        if ($results !== false) {
+            foreach ($results as $result) {
+                if (isset($result->submission_id) && isset($result->submission_approved) && isset($result->user_id) &&
+                    isset($result->submission_rejected) && isset($result->submission_date_added) && isset($result->submission_date_updated)) {
+                    $submissions[] = $this->map($result);
+                }
+            }
+        }
+
+        return $submissions;
+    }
+
     public function update(Submission $submission) {
         DB::query('
             UPDATE submissions SET

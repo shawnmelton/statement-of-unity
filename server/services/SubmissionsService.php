@@ -47,6 +47,11 @@ class SubmissionsService {
         return new Submission();
     }
 
+    public function getList(): array {
+        $options = new \stdClass();
+        return $this->submissionsRepo->search($options);
+    }
+
     private function isValid(array $body): bool {
         return (isset($body['firstName']) && isset($body['lastName']) && isset($body['church']) && isset($body['emailAddress']) &&
             preg_match('/^[a-z]+/i', $body['firstName']) && preg_match('/^[a-z]+/i', $body['lastName']) && $body['church'] !== '' &&

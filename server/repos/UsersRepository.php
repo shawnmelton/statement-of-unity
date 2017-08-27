@@ -39,7 +39,7 @@ class UsersRepository {
         if ($result === false || !isset($result[0]->user_id) || !isset($result[0]->user_first_name) || !isset($result[0]->user_last_name) ||
             !isset($result[0]->user_email_address) || !isset($result[0]->user_church) || !isset($result[0]->user_date_added) || 
             !isset($result[0]->user_date_updated)) {
-            return null;
+            return new User();
         }
 
         return $this->map($result[0]);

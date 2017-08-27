@@ -1,11 +1,12 @@
-import { APP_LOADED, UPDATE_USER } from '../constants/actionTypes'
+import { APP_LOADED, UPDATE_USER, UPDATE_SUBMISSIONS } from '../constants/actionTypes'
 
 import User from '../models/user'
 
 const defaultUser = new User()
 const defaultState = {
     appLoaded: false,
-    user: defaultUser
+    user: defaultUser,
+    submissions: []
 }
 
 export default (state = defaultState, action) => {
@@ -20,6 +21,12 @@ export default (state = defaultState, action) => {
             return {
                 ...state,
                 user: action.user
+            }
+
+        case UPDATE_SUBMISSIONS:
+            return {
+                ...state,
+                submissions: action.submissions
             }
 
         default: return state
