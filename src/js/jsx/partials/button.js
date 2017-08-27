@@ -1,7 +1,7 @@
 import React from 'react'
 
 const template = (component) => {
-    const cssClasses = `block width200 cursor txt${component.props.color} border border${component.props.color} borderRadius3 
+    const cssClasses = `block cursor txt${component.props.color} border border${component.props.color} borderRadius3 borderBox p0-15
         txtNoUnderline bgWhite height40 button${component.props.color} txtUpperCase center txtCenter`.replace(/\n|\t|\r/g, '');
 
     return (

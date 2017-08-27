@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { UPDATE_USER } from '../../constants/actionTypes'
+import { UPDATE_USER, UPDATE_SUBMISSIONS } from '../../constants/actionTypes'
 
+import AjaxResponse from '../../services/xhr/ajaxResponse'
 import User from '../../models/user'
 
 import alphaFirstCharacterValidator from '../../services/validators/alphaFirstCharacter'
@@ -10,6 +11,7 @@ import emailAddressValidator from '../../services/validators/emailAddress'
 import logger from '../../services/logger'
 import notEmptyValidator from '../../services/validators/notEmpty'
 import submissionService from '../../services/submission'
+import submissionsService from '../../services/submissions'
 import template from '../../jsx/partials/submissionForm'
 
 class SubmissionForm extends React.Component {
@@ -27,15 +29,15 @@ class SubmissionForm extends React.Component {
             this.props.updateUser(this.formUser)
 
             submissionService.send({
-                firstName: this.props.user.firstName,
-                lastName: this.props.user.lastName,
-                church: this.props.user.church,
-                emailAddress: this.props.user.emailAddress
+                firstName: this.formUser.firstName,
+                lastName: this.formUser.lastName,
+                church: this.formUser.church,
+                emailAddress: this.formUser.emailAddress
+            }).then(r => {
+                const response = new AjaxResponse(r)
+                logger.log('SubmissionService', response.getResult())
+                this.updateSubmissions()
             })
-
-            setTimeout(() => {
-                console.log(this.props.user)
-            }, 2000)
         } else {
             logger.log('SubmissionForm', 'Form submission failed validation.')
         }
@@ -61,6 +63,14 @@ class SubmissionForm extends React.Component {
         this.formUser.setLastName(lastName)
     }
 
+    updateSubmissions() {
+        submissionsService.getApproved().then(r => {
+            const response = new AjaxResponse(r)
+            logger.log('SubmissionForm', response.getResult().data)
+            this.props.updateSubmissions(response.getResult().data)
+        })
+    }
+
     validated() {
         return alphaFirstCharacterValidator.run(this.formUser.firstName) &&
             alphaFirstCharacterValidator.run(this.formUser.lastName) &&
@@ -77,6 +87,10 @@ const mapDispatchToProps = dispatch => ({
     updateUser: (user) => dispatch({
         type: UPDATE_USER,
         user: user
+    }),
+    updateSubmissions: (submissions) => dispatch({
+        type: UPDATE_SUBMISSIONS,
+        submissions: submissions
     })
 })
 

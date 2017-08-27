@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import template from '../../jsx/partials/button'
+import template from '../../jsx/partials/header'
 
 class Header extends React.Component {
     render() {

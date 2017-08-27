@@ -31,7 +31,7 @@ const template = (component) => {
             <p className="mb25 txtCenter">Finally, we resolve to pursue Jesus Christ’s perfect standard of equality, justice, and love in our churches, city, and country.</p>
 
             
-            <p className="clearFix mb50">
+            <p className="clearFix mb50" id="joinTheListContainer">
                 <Button text="Join the List" color="Green" href="#form" />
             </p>
 
