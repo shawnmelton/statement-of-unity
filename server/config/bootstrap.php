@@ -1,11 +1,11 @@
 <?php
+require_once 'credentials.php';
+
 define('DEBUG', true);
 define('SHOW_SQL_QUERIES', false);
 
 define('DB_NAME', 'statement_of_unity');
 define('DB_HOST', 'localhost');
-define('DB_USER', 'unity_user');
-define('DB_PASS', 'Un1ty_#_P@$s!');
 
 if (DEBUG === false) {
     ob_start('ob_gzhandler');

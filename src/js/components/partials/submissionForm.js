@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { UPDATE_USER, UPDATE_SUBMISSIONS } from '../../constants/actionTypes'
+import { UPDATE_USER, UPDATE_APPROVED_SUBMISSIONS, UPDATE_SUBMISSION_FORM_STATUS } from '../../constants/actionTypes'
 
 import AjaxResponse from '../../services/xhr/ajaxResponse'
 import User from '../../models/user'
@@ -24,11 +24,12 @@ class SubmissionForm extends React.Component {
     onSubmit() {
         logger.log('SubmissionForm', 'Form successfully submitted.  Preparing to validate.')
         if (this.validated()) {
+            this.props.updateFormStatus(true, false)
             logger.log('SubmissionForm', 'Form submission passed validation.')
             logger.log('SubmissionForm', this.formUser)
             this.props.updateUser(this.formUser)
 
-            submissionService.send({
+            submissionService.add({
                 firstName: this.formUser.firstName,
                 lastName: this.formUser.lastName,
                 church: this.formUser.church,
@@ -68,6 +69,8 @@ class SubmissionForm extends React.Component {
             const response = new AjaxResponse(r)
             logger.log('SubmissionForm', response.getResult().data)
             this.props.updateSubmissions(response.getResult().data)
+
+            this.props.updateFormStatus(false, true)
         })
     }
 
@@ -88,8 +91,13 @@ const mapDispatchToProps = dispatch => ({
         type: UPDATE_USER,
         user: user
     }),
+    updateFormStatus: (submitting, submitted) => dispatch({
+        type: UPDATE_SUBMISSION_FORM_STATUS,
+        submitting: submitting,
+        submitted: submitted
+    }),
     updateSubmissions: (submissions) => dispatch({
-        type: UPDATE_SUBMISSIONS,
+        type: UPDATE_APPROVED_SUBMISSIONS,
         submissions: submissions
     })
 })

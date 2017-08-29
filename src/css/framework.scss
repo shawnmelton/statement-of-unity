@@ -8,6 +8,7 @@
 
 /* Borders */
 .noBorder { border: 0; }
+.borderCollapse { border-collapse: collapse; }
 .border { border: 1px solid #fff; }
 .borderDkGrey { border-color: #333; }
 .borderGrey { border-color: #999; }
@@ -23,7 +24,9 @@
 .txtGrey { color: #777; }
 .txtGreen { color: $green; }
 .txtBlue { color: $blue; }
+.txtRed { color: $red; }
 .txtCenter { text-align: center; }
+.txtLeft { text-align: left; }
 .txtLowerCase { text-transform: lowercase; }
 .txtUpperCase { text-transform: uppercase; }
 .txtNoUnderline { text-decoration: none; }
@@ -43,6 +46,7 @@
 .fs110 { font-size: 110%; }
 .fs100 { font-size: 100%; }
 .fs90 { font-size: 90%; }
+.fs80 { font-size: 80%; }
 
 .shadow { text-shadow: 1px 1px 2px #555; }
 .boxShadow { box-shadow: 2px 2px 5px #555; }
@@ -115,6 +119,8 @@
 .noListStyle { list-style: none; }
 
 /* Sizing */
+.maxWidth250 { max-width: 250px; }
+.maxWidth600 { max-width: 600px; }
 .maxWidth1000 { max-width: 1000px; }
 .maxWidth1200 { max-width: 1200px; }
 
@@ -132,6 +138,9 @@
 }
 
 /* Widths */
+.widthFifth {
+    width: 20%;
+}
 .widthHalf {
     width: 50%;
 }

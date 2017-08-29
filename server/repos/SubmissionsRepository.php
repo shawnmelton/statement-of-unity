@@ -13,6 +13,24 @@ class SubmissionsRepository {
         return DB::get()->lastInsertId();
     }
 
+    private function generateWhereClause(\stdClass $options): string {
+        $clauses = [];
+
+        if (isset($options->approved) && is_numeric($options->approved) && $options->approved >= 0 && $options->approved <= 1) {
+            $clauses[] = 'submission_approved = '. intval(($options->approved));
+        }
+
+        if (isset($options->rejected) && is_numeric($options->rejected) && $options->rejected >= 0 && $options->rejected <= 1) {
+            $clauses[] = 'submission_rejected = '. intval(($options->rejected));
+        }
+
+        if (count($clauses)) {
+            return 'WHERE '. join(' AND ', $clauses);
+        }
+
+        return '';
+    }
+
     private function map(\stdClass $object): Submission {
         $submission = new Submission();
         $submission->setId($object->submission_id);
@@ -39,7 +57,8 @@ class SubmissionsRepository {
 
     public function search(\stdClass $options): array {
         $submissions = [];
-        $results = DB::query('SELECT * FROM submissions', []);
+        $whereClause = $this->generateWhereClause($options);
+        $results = DB::query('SELECT * FROM submissions '. $whereClause .' ORDER BY submission_date_updated ASC', []);
         if ($results !== false) {
             foreach ($results as $result) {
                 if (isset($result->submission_id) && isset($result->submission_approved) && isset($result->user_id) &&
@@ -55,13 +74,11 @@ class SubmissionsRepository {
     public function update(Submission $submission) {
         DB::query('
             UPDATE submissions SET
-                user_id = :uid,
                 submission_approved = :app,
                 submission_rejected = :rej,
                 submission_date_updated = NOW()
             WHERE submission_id = :id
         ', [
-            ':uid' => $submission->getUserId(),
             ':app' => $submission->getApproved(),
             ':rej' => $submission->getRejected(),
             ':id' => $submission->getId()

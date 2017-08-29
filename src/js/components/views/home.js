@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { UPDATE_SUBMISSIONS } from '../../constants/actionTypes'
+import { UPDATE_APPROVED_SUBMISSIONS } from '../../constants/actionTypes'
 
 import AjaxResponse from '../../services/xhr/ajaxResponse'
 
@@ -23,12 +23,13 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    submissions: state.common.submissions
+    approvedSubmissions: state.submissions.approved,
+    showFormAnimation: (state.submissions.submitting || state.submissions.submitted)
 })
 
 const mapDispatchToProps = dispatch => ({
     updateSubmissions: (submissions) => dispatch({
-        type: UPDATE_SUBMISSIONS,
+        type: UPDATE_APPROVED_SUBMISSIONS,
         submissions: submissions
     })
 })

@@ -10,7 +10,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    
+    currentRoute: state.routes.currentRoute
 })
 
 const mapDispatchToProps = dispatch => ({

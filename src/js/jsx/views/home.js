@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Button from '../../components/partials/button'
+import FormAnimation from '../../components/partials/FormAnimation'
 import SubmissionForm from '../../components/partials/submissionForm'
 
 const template = (component) => {
@@ -37,7 +38,7 @@ const template = (component) => {
 
             <ul>
             {
-                component.props.submissions.map(submission => {
+                component.props.approvedSubmissions.map(submission => {
                     return <li key={submission.id}>{submission.firstName} {submission.lastName} - {submission.church}</li>
                 })
             }
@@ -49,7 +50,7 @@ const template = (component) => {
             
             <h2>Join the List</h2>
             <p className="mb25">Copy will go here explaining what will happen when people fill out this form ...</p>
-            <SubmissionForm />
+            { component.props.showFormAnimation ? <FormAnimation /> : <SubmissionForm /> }
         </div>
     )
 }

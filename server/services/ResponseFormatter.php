@@ -6,8 +6,8 @@ class ResponseFormatter {
         $object->userId = $submission->getUserId();
         $object->approved = $submission->getApproved();
         $object->rejected = $submission->getRejected();
-        $object->dateUpdated = $submission->getDateAdded();
-        $object->dateAdded = $submission->getDateUpdated();
+        $object->dateUpdated = date('n/j/Y g:i A', strtotime($submission->getDateAdded()));
+        $object->dateAdded = date('n/j/Y g:i A', strtotime($submission->getDateUpdated()));
         return $object;
     }
 
@@ -23,8 +23,8 @@ class ResponseFormatter {
         $object->lastName = $user->getLastName();
         $object->emailAddress = $user->getEmailAddress();
         $object->church = $user->getChurch();
-        $object->dateUpdated = $user->getDateAdded();
-        $object->dateAdded = $user->getDateUpdated();
+        $object->dateUpdated = date('n/j/Y g:i A', strtotime($user->getDateAdded()));
+        $object->dateAdded = date('n/j/Y g:i A', strtotime($user->getDateUpdated()));
         return $object;
     }
 }

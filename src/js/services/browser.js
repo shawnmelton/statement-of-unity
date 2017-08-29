@@ -14,7 +14,8 @@ class Browser {
         }
 
         switch (this.url) {
-            case '/sign-in': return ROUTES.SIGN_IN
+            case '/login': return ROUTES.LOGIN
+            case '/submissions': return ROUTES.SUBMISSIONS
             default: return ROUTES.HOME
         }
     }
@@ -22,7 +23,6 @@ class Browser {
     navigate(url) {
         this.setUrl(url)
         this.history.push(url)
-        this.updateView()
     }
 
     setUrl(url) {

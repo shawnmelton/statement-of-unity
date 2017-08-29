@@ -9,6 +9,7 @@ class Submission {
 
     public function __construct() {
         $this->id = 0;
+        $this->userId = 0;
         $this->approved = 0;
         $this->rejected = 0;
     }

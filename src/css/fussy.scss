@@ -17,3 +17,8 @@ header a {
 }
 
 #joinTheListContainer > a { width: 200px; }
+
+#formAnimation { height: 300px; }
+
+table tr:nth-child(odd) td { background: #eee; }
+table tr:nth-child(even) td { background: #fff; }

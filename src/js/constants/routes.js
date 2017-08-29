@@ -1,6 +1,7 @@
 export const ROUTES = {
     HOME: 'HOME',
-    THANK_YOU: 'THANK_YOU'
+    SUBMISSIONS: 'SUBMISSIONS',
+    LOGIN: 'LOGIN'
 }
 
 export const ROUTE_CHANGE = 'ROUTE_CHANGE'

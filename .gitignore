@@ -2,3 +2,4 @@ css/*
 js/*
 .sass-cache
 node_modules
+server/config/credentials.php

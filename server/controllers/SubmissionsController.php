@@ -26,7 +26,14 @@ class SubmissionsController extends BaseRestController {
         $submissionsService = new SubmissionsService();
         $usersService = new UsersService();
 
-        $submissions = $submissionsService->getList();
+        if (isset($body['approved']) && $body['approved'] === '1') {
+            $submissions = $submissionsService->getApprovedList();
+        } else if (isset($body['unapproved']) && $body['unapproved'] === '1') {
+            $submissions = $submissionsService->getUnapprovedList();
+        } else {
+            $submissions = $submissionsService->getList();
+        }
+
         $output = [];
         foreach ($submissions as $submission) {
             $user = $usersService->getById($submission->getUserId());
@@ -37,7 +44,8 @@ class SubmissionsController extends BaseRestController {
     }
 
     protected function update(int $id, array $body) {
-        // At this point, do nothing.
-        $this->outputObject(null);
+        $service = new SubmissionsService();
+        $submission = $service->update($body);
+        $this->outputObject(ResponseFormatter::formatSubmissionResponse($submission));
     }
 }

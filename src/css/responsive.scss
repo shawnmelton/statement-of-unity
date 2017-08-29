@@ -2,6 +2,12 @@
     header > h1 {
         text-align: center;
     }
+
+    form a.height40 {
+        height: 50px;
+        line-height: 50px;
+        max-width: 250px;
+    }
 }
 
 @media screen and (max-width:500px) {
@@ -13,5 +19,17 @@
         text-align: left;
 
         strong { width: 75%; }
+    }
+
+    table.widthFull {
+        font-size: 60%;
+
+        a {
+            margin: 5px 0;
+
+            &.mr25 {
+                margin-right: 0;
+            }
+        }
     }
 }
