@@ -1,11 +1,17 @@
 <?php
+define('DEBUG', false);
+
 require_once 'credentials.php';
 
-define('DEBUG', true);
 define('SHOW_SQL_QUERIES', false);
 
-define('DB_NAME', 'statement_of_unity');
-define('DB_HOST', 'localhost');
+if (DEBUG) {
+    define('DB_NAME', 'statement_of_unity');
+    define('DB_HOST', 'localhost');
+} else {
+    define('DB_NAME', 'hamptpa6_statement_of_unity');
+    define('DB_HOST', 'localhost');
+}
 
 if (DEBUG === false) {
     ob_start('ob_gzhandler');
