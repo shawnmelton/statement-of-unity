@@ -24,9 +24,14 @@ class SubmissionForm extends React.Component {
     onSubmit() {
         logger.log('SubmissionForm', 'Form successfully submitted.  Preparing to validate.')
         if (this.validated()) {
-            this.props.updateFormStatus(true, false)
             logger.log('SubmissionForm', 'Form submission passed validation.')
             logger.log('SubmissionForm', this.formUser)
+
+            this.props.updateFormStatus({
+                submitting: true,
+                submitted: false,
+                errors: false
+            })
             this.props.updateUser(this.formUser)
 
             submissionService.add({
@@ -41,6 +46,11 @@ class SubmissionForm extends React.Component {
             })
         } else {
             logger.log('SubmissionForm', 'Form submission failed validation.')
+            this.props.updateFormStatus({
+                submitting: false,
+                submitted: false,
+                errors: true
+            })
         }
     }
 
@@ -70,7 +80,11 @@ class SubmissionForm extends React.Component {
             logger.log('SubmissionForm', response.getResult().data)
             this.props.updateSubmissions(response.getResult().data)
 
-            this.props.updateFormStatus(false, true)
+            this.props.updateFormStatus({
+                submitting: false,
+                submitted: true,
+                errors: false
+            })
         })
     }
 
@@ -83,7 +97,8 @@ class SubmissionForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    user: state.common.user
+    user: state.common.user,
+    formErrors: state.submissions.errors
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -91,10 +106,11 @@ const mapDispatchToProps = dispatch => ({
         type: UPDATE_USER,
         user: user
     }),
-    updateFormStatus: (submitting, submitted) => dispatch({
+    updateFormStatus: (status) => dispatch({
         type: UPDATE_SUBMISSION_FORM_STATUS,
-        submitting: submitting,
-        submitted: submitted
+        submitting: status.submitting,
+        submitted: status.submitted,
+        errors: status.errors
     }),
     updateSubmissions: (submissions) => dispatch({
         type: UPDATE_APPROVED_SUBMISSIONS,

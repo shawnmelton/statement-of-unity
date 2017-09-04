@@ -22,7 +22,7 @@ const template = (component) => {
                     </div>
                     <div className="mb35">
                         <label htmlFor="password" className="block mb5">Password *</label>
-                        <TextField name="password" changeAction={(e) => {
+                        <TextField type="password" name="password" changeAction={(e) => {
                             component.updatePassword(e.target.value)
                         }} />
                     </div>

@@ -4,6 +4,7 @@ const defaultState = {
     approved: [],
     submitting: false,
     submitted: false,
+    errors: false,
     unapproved: []
 }
 
@@ -25,7 +26,8 @@ export default (state = defaultState, action) => {
             return {
                 ...state,
                 submitting: action.submitting,
-                submitted: action.submitted
+                submitted: action.submitted,
+                errors: action.errors
             }
 
         default: return state

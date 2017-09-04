@@ -7,6 +7,7 @@ import { UPDATE_ADMIN } from '../../constants/actionTypes'
 import AjaxResponse from '../../services/xhr/ajaxResponse'
 
 import authService from '../../services/auth'
+import browser from '../../services/browser'
 import logger from '../../services/logger'
 import notEmptyValidator from '../../services/validators/notEmpty'
 import template from '../../jsx/views/login'
@@ -32,6 +33,8 @@ class Login extends React.Component {
                 const response = new AjaxResponse(r)
                 logger.log('Login', response.getResult())
                 if (response.getResult().data.result === true) {
+                    this.props.updateAdmin(true)
+                    browser.navigate('/submissions')
                     this.props.route(ROUTES.SUBMISSIONS)
                 }
             })

@@ -2,6 +2,7 @@
 .bgWhite { background-color: #fff; }
 .bgGreen { background-color: $green; }
 .bgBlue { background-color: $blue; }
+.bgLightRed { background-color: $lightRed; }
 .bgOffWhite { background-color: $offWhite; }
 .bgTransparent { background-color: rgba(0, 0, 0, 0); }
 .bgTransBlack { background-color: rgba(0, 0, 0, 0.5); }
@@ -14,6 +15,7 @@
 .borderGrey { border-color: #999; }
 .borderGreen { border-color: $green; }
 .borderBlue { border-color: $blue; }
+.borderRed { border-color: $red; }
 .borderWidth3 { border-width: 3px; }
 .borderRadius3 { border-radius: 3px; }
 

@@ -6,6 +6,7 @@ import { UPDATE_UNAPPROVED_SUBMISSIONS } from '../../constants/actionTypes'
 
 import AjaxResponse from '../../services/xhr/ajaxResponse'
 
+import browser from '../../services/browser'
 import logger from '../../services/logger'
 import submissionService from '../../services/submission'
 import submissionsService from '../../services/submissions'
@@ -19,6 +20,7 @@ class Submissions extends React.Component {
 
     componentWillMount() {
         if (this.props.loggedIn === false) {
+            browser.navigate('/login')
             this.props.route(ROUTES.LOGIN)
         }
 

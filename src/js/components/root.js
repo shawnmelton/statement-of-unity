@@ -7,7 +7,7 @@ import template from '../jsx/root'
 
 export class Root extends React.Component {
     componentDidMount() {
-        logger.setOutput(true)
+        logger.setOutput(false)
         logger.log('Root', 'App has been loaded.')
         this.props.onLoad()
     }

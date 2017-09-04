@@ -8,6 +8,7 @@ const template = (component) => {
         <form method="post" action="" className="mb50" onSubmit={(e) => {
             component.onSubmit()
         }}>
+            { component.props.formErrors ? <p className="mb25 txtRed txtCenter bgLightRed p5-10 border borderRed lineHeight14">Please make sure that you have completed all required fields (*).</p> : '' }
             <fieldset className="clearFix">
                 <div className="left mb25 width45p mr10p">
                     <label htmlFor="firstName" className="block mb5">First Name *</label>
@@ -31,7 +32,7 @@ const template = (component) => {
                 </div>
                 <div className="mb35">
                     <label htmlFor="emailAddress" className="block mb5">Email Address *</label>
-                    <TextField name="emailAddress" changeAction={(e) => {
+                    <TextField type="email" name="emailAddress" changeAction={(e) => {
                         component.updateEmailAddress(e.target.value)
                     }} />
                 </div>
