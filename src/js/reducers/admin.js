@@ -1,7 +1,9 @@
 import { UPDATE_ADMIN } from '../constants/actionTypes'
 
+import adminService from '../services/admin'
+
 const defaultState = {
-    loggedIn: false
+    loggedIn: adminService.getLoggedIn()
 }
 
 export default (state = defaultState, action) => {

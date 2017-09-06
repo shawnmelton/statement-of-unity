@@ -6,6 +6,7 @@ import { UPDATE_ADMIN } from '../../constants/actionTypes'
 
 import AjaxResponse from '../../services/xhr/ajaxResponse'
 
+import adminService from '../../services/admin'
 import authService from '../../services/auth'
 import browser from '../../services/browser'
 import logger from '../../services/logger'
@@ -33,6 +34,7 @@ class Login extends React.Component {
                 const response = new AjaxResponse(r)
                 logger.log('Login', response.getResult())
                 if (response.getResult().data.result === true) {
+                    adminService.logIn()
                     this.props.updateAdmin(true)
                     browser.navigate('/submissions')
                     this.props.route(ROUTES.SUBMISSIONS)
